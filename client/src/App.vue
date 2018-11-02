@@ -30,7 +30,9 @@ export default {
   sockets: {
     connect() {
       console.log("socket connected");
-      this.$socket.emit("connection");
+    },
+    connected(data) {
+      console.log(data);
     }
   }
 };

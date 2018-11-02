@@ -11,4 +11,5 @@ server.listen(9090);
 
 socket.on("connection", () => {
   console.log("Server Socket: connected!");
+  socket.emit("connected", "Hello from server");
 });
