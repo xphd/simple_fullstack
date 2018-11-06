@@ -4,12 +4,18 @@ const socketIO = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
-const socket = socketIO(server, { origins: "*:*" });
+const serverSocket = socketIO(server, { origins: "*:*" });
 
 console.log("Server listening 9090");
-server.listen(9090);
 
-socket.on("connection", () => {
+serverSocket.on("connection", socket => {
   console.log("Server Socket: connected!");
-  socket.emit("connected", "Hello from server");
+  socket.emit("responseOne", 1);
+
+  socket.on("requestOne", () => {
+    console.log("requestOne!");
+    socket.emit("responseOne", 1);
+  });
 });
+
+server.listen(9090);

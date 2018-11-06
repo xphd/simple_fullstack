@@ -16,6 +16,8 @@
       <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
     </ul>
+    <button @click="requestOne()">requestOne</button>
+    
   </div>
 </template>
 
@@ -29,10 +31,16 @@ export default {
   },
   sockets: {
     connect() {
-      console.log("socket connected");
+      console.log("Client: try to connect!");
     },
-    connected(data) {
-      console.log(data);
+    responseOne(data) {
+      console.log("data", data);
+    }
+  },
+  methods: {
+    requestOne() {
+      console.log("Emit requestOne");
+      this.$socket.emit("requestOne");
     }
   }
 };
